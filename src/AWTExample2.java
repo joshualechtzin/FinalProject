@@ -1,39 +1,84 @@
 // importing Java AWT class
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-// extending Frame class to our class AWTExample1
-public class AwtLayoutDemo extends Frame {
+// class AWTExample2 directly creates instance of Frame class
+class AWTExample2 {
 
     // initializing using constructor
-    AwtLayoutDemo() {
+    AWTExample2() {
 
-        // creating a button
-        Button b = new Button("Click Me!!");
+        // creating a Frame
+        Frame f = new Frame();
 
-        // setting button position on screen
-        b.setBounds(30,100,80,30);
+        // creating a Label
+        Label l = new Label("Question");
 
-        // adding button into frame
-        add(b);
+        // creating a Button
+        Button yes = new Button("Yes");
+        Button no = new Button("No");
+        Button enter = new Button("Enter");
+
+
+        // creating a TextField
+        TextField t = new TextField();
+
+        // setting position of above components in the frame
+        l.setBounds(20, 60, 240, 20);
+        l.setAlignment(Label.CENTER);
+        yes.setBounds(20, 100, 80, 30);
+        no.setBounds(100, 100, 80, 30);
+        t.setBounds(20,150, 160, 20);
+        enter.setBounds(180,150,80,20);
+
+        //add action listener to buttons
+        yes.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                l.setText("Yes");
+            }
+        });
+        no.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                l.setText("No");
+            }
+        });
+        enter.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                l.setText(t.getText());
+                if(l.getText().length() > 10)
+                    l.setAlignment(Label.LEFT);
+                else
+                    l.setAlignment(Label.CENTER);
+                t.setText("");
+            }
+        });
+
+        // adding components into frame
+        f.add(l);
+        f.add(yes);
+        f.add(no);
+        f.add(t);
+        f.add(enter);
 
         // frame size 300 width and 300 height
-        setSize(300,300);
+        f.setSize(400,300);
 
-        // setting the title of Frame
-        setTitle("This is our basic AWT example");
+        // setting the title of frame
+        f.setTitle("20 Questions");
 
-        // no layout manager
-        setLayout(null);
+        // no layout
+        f.setLayout(null);
 
-        // now frame will be visible, by default it is not visible
-        setVisible(true);
+        // setting visibility of frame
+        f.setVisible(true);
     }
 
     // main method  
     public static void main(String args[]) {
 
         // creating instance of Frame class
-        AwtLayoutDemo f = new AwtLayoutDemo();
+        AWTExample2 awt_obj = new AWTExample2();
 
     }
 
