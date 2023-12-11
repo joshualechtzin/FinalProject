@@ -66,9 +66,12 @@ public class gameFrame {
         });
         enter.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
-                setData(input.getText());
-                input.setText("");
-                EnterLatch.countDown();
+                if(input.getText().isEmpty()){}
+                else {
+                    setData(input.getText());
+                    input.setText("");
+                    EnterLatch.countDown();
+                }
             }
         });
 
